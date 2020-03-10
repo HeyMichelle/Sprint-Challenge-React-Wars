@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import CharacterCard from './components/CharacterCard';
 
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import './App.css';
 
   
@@ -10,7 +10,6 @@ import './App.css';
 const App = () => {
   const [data, setData] = useState([]);
   
-
   useEffect(() => {
     axios
       .get("https://swapi.co/api/people/")
@@ -21,14 +20,34 @@ const App = () => {
   }, []) 
 
 
+
+
+  const ContainerBox = styled.div`
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      width: 100%;
+      border-radius: 37px;
+      background-color: #fff4e8;
+      // rgb(233, 227, 214, .3);
+  `;
+
+  const Header = styled.h1`
+        display: flex;
+        justify-content: center;
+        width: 100%
+  `;
+
+
   return (
     <div className="App">
-      <h1 className="Header">React Wars</h1>
-      <div className="container">
+      <Header className="Header">React Wars</Header>
+      <ContainerBox className="container">
         {data.map(user => {
-        return <CharacterCard name={user.name} height={user.height} mass={user.mass} hair={user.hair_color} birth={user.birth_year} />
+        return <CharacterCard name={user.name} height={user.height} mass={user.mass} hair={user.hair_color} birth={user.birth_year} key={user.name}/>
           })}          
-      </div>
+      </ContainerBox>
     </div>
   );
 }
