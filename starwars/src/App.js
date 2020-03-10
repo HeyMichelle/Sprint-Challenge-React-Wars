@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, Component } from 'react';
 import axios from 'axios';
 import CharacterCard from './components/CharacterCard';
+// import SearchBar from './components/SearchBar';
 
 import styled from 'styled-components';
 import './App.css';
@@ -8,20 +9,7 @@ import './App.css';
   
 
 const App = () => {
-  const [data, setData] = useState([]);
   
-  useEffect(() => {
-    axios
-      .get("https://swapi.co/api/people/")
-        .then(res => {
-          setData(res.data.results);
-        })
-        .catch( err => {console.log(err)} )
-  }, []) 
-
-
-
-
   const ContainerBox = styled.div`
       display: flex;
       flex-direction: row;
@@ -38,13 +26,47 @@ const App = () => {
         display: flex;
         justify-content: center;
         width: 100%
-        font-size: 40px;
   `;
 
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    axios
+      .get("https://swapi.co/api/people/")
+        .then(res => {
+          setData(res.data.results);
+        })
+        .catch( err => {console.log(err)} )
+  }, []) 
+
+  constructor() {
+      super();
+      data.state = {
+        search: ''
+      };
+  }
+
+  updateSearch(event) {
+    data.setState({search: event.target.value});
+  }
+
+  const filteredCharacters = data.props.filter(
+    (character) => {
+        return character.name.indexOf(data.state.search) !== -1;
+    }
+  );
 
   return (
     <div className="App">
       <Header className="Header" >React Wars</Header>
+      
+      <input type="text" 
+          value={data.state.search}
+          onChange={data.updateSearch.bind(data)}/>
+
+            {/* <SearchBar /> */}
+
+
       <ContainerBox className="container">
         {data.map(user => {
         return <CharacterCard name={user.name} height={user.height} mass={user.mass} hair={user.hair_color} birth={user.birth_year} key={user.name}/>
