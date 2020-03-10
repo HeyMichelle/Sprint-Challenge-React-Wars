@@ -30,7 +30,8 @@ const App = () => {
       width: 100%;
       border-radius: 37px;
       background-color: #fff4e8;
-      // rgb(233, 227, 214, .3);
+      box-shadow:  6px 6px 8px #e8ded3, 
+                    -6px -6px 8px #e8ded3;
   `;
 
   const Header = styled.h1`

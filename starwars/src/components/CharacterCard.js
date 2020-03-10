@@ -5,10 +5,10 @@ const CharacterCard = props => {
     console.log("card info", props);
     
     const CardWrapper = styled.div`
-        padding: .7em;
-        margin: 20px;
-        height: 85%;
-        width: 85%;
+        padding: 1em;
+        margin: 30px;
+        height: 300px;
+        width: 300px;
         border-radius: 37px;
         background: #fff4e8;
         box-shadow:  6px 6px 8px #e8ded3, 
@@ -18,7 +18,7 @@ const CharacterCard = props => {
     const ParaColor = styled.div`
         background-color: #fff4e8;
         border-radius: 20%:
-        border-top: 3px solid black;
+        // border-top: 3px solid black;
     `;
 
     const Pblack = styled.p`
