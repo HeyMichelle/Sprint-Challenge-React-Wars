@@ -38,12 +38,13 @@ const App = () => {
         display: flex;
         justify-content: center;
         width: 100%
+        font-size: 40px;
   `;
 
 
   return (
     <div className="App">
-      <Header className="Header">React Wars</Header>
+      <Header className="Header" >React Wars</Header>
       <ContainerBox className="container">
         {data.map(user => {
         return <CharacterCard name={user.name} height={user.height} mass={user.mass} hair={user.hair_color} birth={user.birth_year} key={user.name}/>
@@ -60,4 +61,4 @@ export default App;
 
   // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
   // side effect in a component, you want to think about which state and/or props it should
-  // sync up with, if any.
+  // sync up with, if any. 
